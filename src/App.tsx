@@ -1,6 +1,6 @@
 import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "./store/store";
+import { RootState, store } from "./store/store";
 import { addTodo, deleteTodo, saveEdit, startEditing, Todo, toggleTodoStatus, setCurrentTodo, setCurrentEdit, fetchTodos } from "./store/todoSlice";
 
 
@@ -9,10 +9,10 @@ import { addTodo, deleteTodo, saveEdit, startEditing, Todo, toggleTodoStatus, se
 
 function App() {
   const todos = useSelector((state: RootState) => state.todoReducer.todos);
-  const currentTodo = useSelector((state: RootState) => state.todoReducer.currentTodo as unknown as Todo || null);
-  const isEditing = useSelector((state: RootState) => state.todoReducer.isEditing as unknown as boolean);
-  const currentEdit = useSelector((state: RootState) => state.todoReducer.currentEdit as unknown as Todo || null);
-  const isLoading = useSelector((state: RootState) => state.todoReducer.isLoading as unknown as Todo || null);
+  const currentTodo = useSelector((state: RootState) => state.todoReducer.currentTodo);
+  const isEditing = useSelector((state: RootState) => state.todoReducer.isEditing);
+  const currentEdit = useSelector((state: RootState) => state.todoReducer.currentEdit);
+  const isLoading = useSelector((state: RootState) => state.todoReducer.isLoading);
 
   const dispatch = useDispatch<typeof store.dispatch>();
 
@@ -27,7 +27,7 @@ function App() {
         <input
           type="text"
           placeholder="Ajouter une tâche"
-          value={currentTodo}
+          value={currentTodo ?? ""}
           onChange={(e) => dispatch(setCurrentTodo(e.target.value))}
         />
         <button onClick={() => dispatch(addTodo(currentTodo))}>Ajouter</button>
