@@ -1,14 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import todoReducer from "./todoSlice";
-import productSlice from "./productSlice";
-import cartSlice from "./cartSlice";
 
 // Configuration du store Redux
 export const store = configureStore({
   reducer: {
-    products: productSlice,
-    cart: cartSlice,
-    todo: todoReducer, // Associe le slice `todo` au store
   },
   // Ajout des middleware par défaut (utile pour des middlewares additionnels)
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),

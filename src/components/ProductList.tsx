@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const ProductList = () => {
   const dispatch = useDispatch() as AppDispatch;
-  const { items, isLoading, currentPage } = useSelector((state: RootState) => state.products);
+  const { items, isLoading, currentPage } = {}
 
   React.useEffect(() => {
     dispatch(fetchProducts(currentPage || 1));
